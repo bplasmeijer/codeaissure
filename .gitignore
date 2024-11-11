@@ -347,3 +347,5 @@ healthchecksdb
 
 # SFTP docker container
 ./docker-data
+
+output.txt

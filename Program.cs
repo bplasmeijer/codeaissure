@@ -26,9 +26,11 @@ namespace CodeAissure
                                 "The OpenAI model to use for the API call.");
             Option<string> repoOption = new(
                                 new[] { "--repopath", "-r" },
+                                getDefaultValue: () => Environment.CurrentDirectory,
                                 "The path to the Git repository");
             Option<string?> outputOption = new(
                                 new[] { "--output", "-o" },
+                                getDefaultValue: () => "output.txt",
                                 "Filename to output contents.");
             Option<string> fromBranchOption = new(
                                 new[] { "--base", "-b" },

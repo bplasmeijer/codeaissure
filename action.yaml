@@ -1,0 +1,55 @@
+name: 'CodeAissure Action'
+description: 'A GitHub Action to run my .NET CodeAissure application'
+author: 'Bart Plasmeijer'
+
+inputs:
+  apikey:
+    description: 'The OpenAI API key'
+    required: true
+    default: 'XXXXXXXX'
+  apiendpoint:
+    description: 'The OpenAI API endpoint'
+    required: true
+    default: 'https://api.openai.com'
+  model:
+    description: 'The OpenAI model to use'
+    required: true
+    default: 'gpt-4o-mini'
+  base_branch:
+    description: 'The base branch for the comparison'
+    required: true
+    default: 'main'
+  target_branch:
+    description: 'The target branch for the comparison'
+    required: true
+    default: 'develop'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x' # Specify your .NET version
+
+    - name: Restore dependencies
+      shell: bash
+      run: dotnet restore
+
+    - name: Build
+      shell: bash
+      run: dotnet build --configuration Debug --no-restore
+
+    - name: Run .NET Console App
+      shell: bash
+      run: |
+        git fetch --all --prune 
+        git checkout ${{ inputs.target_branch }}
+        git checkout ${{ inputs.base_branch }}
+        dotnet run reviewchanges \
+          --apikey ${{ inputs.apikey }} \
+          --apiendpoint ${{ inputs.apiendpoint }} \
+          --model ${{ inputs.model }} \
+          --base ${{ inputs.base_branch }} \
+          --target ${{ inputs.target_branch }} \
+          --configuration Debug
