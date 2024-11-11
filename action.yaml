@@ -18,11 +18,9 @@ inputs:
   base_branch:
     description: 'The base branch for the comparison'
     required: true
-    default: 'main'
   target_branch:
     description: 'The target branch for the comparison'
     required: true
-    default: 'develop'
 
 runs:
   using: 'composite'
