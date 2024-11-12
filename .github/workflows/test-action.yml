@@ -19,6 +19,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Echo base_branch and target_branch
+        run: |
+          echo "Base branch: ${{ github.event.repository.default_branch }}"
+          echo "Target branch: ${{ github.head_ref }}"
+
       - name: Run custom action
         uses: ./
         with:
