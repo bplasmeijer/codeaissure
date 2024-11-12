@@ -6,15 +6,12 @@ inputs:
   apikey:
     description: 'The OpenAI API key'
     required: true
-    default: 'XXXXXXXX'
   apiendpoint:
     description: 'The OpenAI API endpoint'
     required: true
-    default: 'https://api.openai.com'
   model:
     description: 'The OpenAI model to use'
     required: true
-    default: 'gpt-4o-mini'
   base_branch:
     description: 'The base branch for the comparison'
     required: true
