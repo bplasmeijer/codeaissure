@@ -29,6 +29,6 @@ jobs:
         with:
           apikey: ${{ secrets.APIKEY }}
           apiendpoint: ${{ secrets.APIENDPOINT }}
-          model: ${{ secrets.MODEL }}
+          model: ${{ env.MODEL }}
           base_branch: ${{ github.event.repository.default_branch }}
           target_branch: ${{ github.ref_name }}
