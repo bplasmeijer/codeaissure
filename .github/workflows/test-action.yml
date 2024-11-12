@@ -23,13 +23,13 @@ jobs:
         run: |
           echo "Base branch: ${{ github.event.repository.default_branch }}"
           echo "Target branch: ${{ github.ref_name }}"
-          echo "Model: ${{ env.MODEL }}"
+          echo "Model: ${{ vars.MODEL }}"
 
       - name: Run custom action
         uses: ./
         with:
           apikey: ${{ secrets.APIKEY }}
           apiendpoint: ${{ secrets.APIENDPOINT }}
-          model: ${{ env.MODEL }}
+          model: ${{ vars.MODEL }}
           base_branch: ${{ github.event.repository.default_branch }}
           target_branch: ${{ github.ref_name }}
