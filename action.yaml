@@ -18,6 +18,9 @@ inputs:
   target_branch:
     description: 'The target branch for the comparison'
     required: true
+  repopath:
+    description: 'The repository path'
+    required: true
 
 runs:
   using: 'composite'
@@ -47,4 +50,5 @@ runs:
           --model ${{ inputs.model }} \
           --base ${{ inputs.base_branch }} \
           --target ${{ inputs.target_branch }} \
+          --repopath ${{ inputs.repopath }} \
           --configuration Debug
